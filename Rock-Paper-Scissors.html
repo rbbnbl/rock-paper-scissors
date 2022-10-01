@@ -7,6 +7,58 @@
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-    Edit
+    <script>
+        let playerChoice = prompt('Rock, Paper, or Scissors').toLowerCase();
+        function getComputerChoice() {
+            var randomnumber = Math.floor(Math.random() * 3 + 1)
+
+            if (randomnumber === 1) {
+                return 'rock'
+            } else if (randomnumber ===2) {
+                return 'paper';
+            } else {
+                return 'scissors';
+            }
+        }
+
+        function game(player, comp) {
+            value = player + comp;
+            
+            switch (value) {
+                case 'rockrock':
+                    return `it's a draw! you both picked ${player}`;
+                    break;
+                case 'rockpaper':
+                    return `you lose! ${comp} beats ${player}`;
+                    break;
+                case 'rockscissors':
+                    return `you win! ${player} beats ${comp}`;
+                    break;
+                case 'paperrock':
+                    return `you win! ${player} beats ${comp}`;
+                    break;
+                case 'paperpaper':
+                    return `it's a draw! you both picked ${player}`;
+                    break;
+                case 'paperscissors':
+                    return `you lose! ${comp} beats ${player}`;    
+                    break;
+                case 'scissorsrock':
+                    return `you lose! ${comp} beats ${player}`;
+                    break;
+                case 'scissorspaper':
+                    return `you win! ${player} beats ${comp}`;
+                    break;
+                case 'scissorsscissors':
+                    return `it's a draw! you both picked ${player}`;   
+                default:
+                    return 'there was an error';
+                    break;
+            }
+            
+        }
+
+        console.log(game(playerChoice, getComputerChoice()));
+    </script>
 </body>
 </html>

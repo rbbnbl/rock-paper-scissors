@@ -8,7 +8,14 @@
 </head>
 <body>
     <script>
-        let playerChoice = prompt('Rock, Paper, or Scissors').toLowerCase();
+        var userScore = 0
+        var compScore = 0
+        
+        function getPlayerChoice() {
+            playerChoice = prompt('Rock, Paper, or Scissors').toLowerCase();
+            return playerChoice;
+        } 
+
         function getComputerChoice() {
             var randomnumber = Math.floor(Math.random() * 3 + 1)
 
@@ -21,44 +28,65 @@
             }
         }
 
-        function game(player, comp) {
+        function playRound(player, comp) {
             value = player + comp;
             
             switch (value) {
                 case 'rockrock':
-                    return `it's a draw! you both picked ${player}`;
+                    console.log(`it's a draw! you both picked ${player}`);
                     break;
                 case 'rockpaper':
-                    return `you lose! ${comp} beats ${player}`;
+                    compScore++;
+                    console.log(`you lose! ${comp} beats ${player}`);
                     break;
                 case 'rockscissors':
-                    return `you win! ${player} beats ${comp}`;
+                    userScore++;
+                    console.log(`you win! ${player} beats ${comp}`);
                     break;
                 case 'paperrock':
-                    return `you win! ${player} beats ${comp}`;
+                    userScore++;
+                    console.log(`you win! ${player} beats ${comp}`);
                     break;
                 case 'paperpaper':
-                    return `it's a draw! you both picked ${player}`;
+                    console.log(`it's a draw! you both picked ${player}`);
                     break;
                 case 'paperscissors':
-                    return `you lose! ${comp} beats ${player}`;    
+                    compScore++;
+                    console.log(`you lose! ${comp} beats ${player}`);    
                     break;
                 case 'scissorsrock':
-                    return `you lose! ${comp} beats ${player}`;
+                    compScore++;
+                    console.log(`you lose! ${comp} beats ${player}`);
                     break;
                 case 'scissorspaper':
-                    return `you win! ${player} beats ${comp}`;
+                    userScore++;
+                    console.log(`you win! ${player} beats ${comp}`);
                     break;
                 case 'scissorsscissors':
-                    return `it's a draw! you both picked ${player}`;   
+                    console.log(`it's a draw! you both picked ${player}`);   
                 default:
-                    return 'there was an error';
+                    console.log('there was an error');
                     break;
             }
             
         }
 
-        console.log(game(playerChoice, getComputerChoice()));
+        function game() {
+            for (let i = 0; i < 5; i++){
+            playRound(getPlayerChoice(), getComputerChoice());
+            console.log(` user score is ${userScore}`);
+            console.log(` comp score is ${compScore}`);
+          }
+            if (userScore > compScore) {
+                console.log(`user wins! ${userScore} to ${compScore}`)
+            } else if (userScore === compScore) {
+                console.log(`it's a draw! ${userScore} to ${compScore}`)
+            } else {
+                console.log(`comp wins! ${compScore} to ${userScore}`)
+            }
+        }
+
+        game();
     </script>
 </body>
 </html>
